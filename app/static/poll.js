@@ -12,10 +12,11 @@ function update(jobId) {
     $.ajax({
         url: `/classifications/${jobId}`,
         success: function (data) {
-            console.log(data)
             switch (data['task_status']) {
                 case "finished":
                     $('#spinner').hide();
+                    $('#download_json_btn').show();
+                    $('#download_png_btn').show();
                     $('#waitText').text("");
                     makeGraph(data['data']);
                     break;
@@ -43,6 +44,8 @@ function update(jobId) {
 $(document).ready(function () {
     var scripts = document.getElementById('polling');
     var jobID = scripts.getAttribute('jobid');
+    $('#download_json_btn').hide();
+    $('#download_png_btn').hide();
     update(jobID);
 });
 
