@@ -6,7 +6,6 @@ import importlib
 import json
 import logging
 import os
-import time
 import torch
 from PIL import Image
 from torchvision import transforms
@@ -82,5 +81,4 @@ def classify_image(model_id, img_id):
     output = [(labels[idx], percentage[idx].item()) for idx in indices[0][:5]]
 
     img.close()
-    time.sleep(5)
     return output

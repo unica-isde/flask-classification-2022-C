@@ -14,6 +14,8 @@ function update(jobId) {
         success: function (data) {
             switch (data['task_status']) {
                 case "finished":
+                    downloadJSON(data['data']);
+
                     $('#spinner').hide();
                     $('#download_json_btn').show();
                     $('#download_png_btn').show();
@@ -49,6 +51,16 @@ $(document).ready(function () {
     update(jobID);
 });
 
+// Prepare to download the JSON from data
+function downloadJSON(data) {
+    var json = JSON.stringify(data);
+    var blob = new Blob([json], {type: "application/json"});
+    var url = URL.createObjectURL(blob);
+
+    $('#download_json_btn').attr('href', url);
+    $('#download_json_btn').attr('download', 'classification_output.json');
+}
+
 function makeGraph(results) {
     var ctx = document.getElementById("classificationOutput").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -82,6 +94,16 @@ function makeGraph(results) {
                         beginAtZero: true
                     }
                 }]
+            },
+            animation: {
+                // when the graph is loaded, prepare for download
+                onComplete: function () {
+                    // prepare for download myChart
+                    const base_64 = myChart.toBase64Image();
+                    const link = document.getElementById('download_png_btn');
+                    link.href = base_64;
+                    link.download = 'classification_output.png';
+                }
             }
         }
     });
