@@ -3,7 +3,7 @@
 {% block content %}
 
     <h1>Select Model and Image</h1>
-    <form action="" method="post" novalidate>
+    <form action="" method="post" novalidate enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <h4>
             Model:
@@ -16,6 +16,10 @@
         </h4>
         <p>
             {{ form.image }}
+        </p>
+        <h4>Upload you own image:</h4>
+        <p>
+            {{ form.upload_file }}
         </p>
         <button type="submit" class="btn btn-dark mb-2">Submit</button>
     </form>
