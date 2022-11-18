@@ -23,9 +23,9 @@ def classifications():
         image_id = form.image.data
         model_id = form.model.data
         uploaded_file = form.upload_file.data
-        print(uploaded_file)
+        use_own_img = form.use_own_img.data
 
-        if uploaded_file:
+        if uploaded_file and use_own_img:
             image_to_process = secure_filename(uploaded_file.filename)
             uploaded_file.save(os.path.join(config.image_folder_path, image_to_process))
         else:

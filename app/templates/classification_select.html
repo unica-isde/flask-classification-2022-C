@@ -11,16 +11,45 @@
         <p>
             {{ form.model }}
         </p>
-        <h4>
-            Image:
-        </h4>
-        <p>
-            {{ form.image }}
-        </p>
-        <h4>Upload you own image:</h4>
-        <p>
-            {{ form.upload_file }}
-        </p>
+        <div id="image">
+            <h4>
+                Image:
+            </h4>
+            <p>
+                {{ form.image }}
+                <a href="#" onclick="toggleUploadBtn()">Want to upload your own images?</a>
+            </p>
+        </div>
+        <div id="upload-file" style="display: none">
+            <h4>Upload you own image:</h4>
+            <p>
+                {{ form.upload_file }}
+                <a href="#" onclick="toggleUploadBtn()">Want to use a pre-loaded image?</a>
+            </p>
+        </div>
+        <div style="visibility: hidden">
+            {{ form.use_own_img }}
+        </div>
         <button type="submit" class="btn btn-dark mb-2">Submit</button>
     </form>
+
+    <script>
+        // toggle the visibility of the upload file button
+        function toggleUploadBtn() {
+            var upload_div = document.getElementById("upload-file");
+            var image_div = document.getElementById("image");
+            if (upload_div.style.display === "none") {
+                // show upload button
+                upload_div.style.display = "block";
+                image_div.style.display = "none";
+
+                // set the use_default field to true
+                document.getElementById("use_own_img_cbx").checked = true;
+            } else {
+                upload_div.style.display = "none";
+                image_div.style.display = "block";
+                document.getElementById("use_own_img_cbx").checked = false;
+            }
+        }
+    </script>
 {% endblock %}
