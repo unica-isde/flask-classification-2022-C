@@ -61,6 +61,10 @@ function downloadJSON(data) {
     $('#download_json_btn').attr('download', 'classification_output.json');
 }
 
+function downloadPNG(chart) {
+    
+}
+
 function makeGraph(results) {
     var ctx = document.getElementById("classificationOutput").getContext('2d');
     var myChart = new Chart(ctx, {
