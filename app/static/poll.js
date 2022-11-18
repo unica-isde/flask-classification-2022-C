@@ -12,10 +12,13 @@ function update(jobId) {
     $.ajax({
         url: `/classifications/${jobId}`,
         success: function (data) {
-            console.log(data)
             switch (data['task_status']) {
                 case "finished":
+                    downloadJSON(data['data']);
+
                     $('#spinner').hide();
+                    $('#download_json_btn').show();
+                    $('#download_png_btn').show();
                     $('#waitText').text("");
                     makeGraph(data['data']);
                     break;
@@ -43,8 +46,24 @@ function update(jobId) {
 $(document).ready(function () {
     var scripts = document.getElementById('polling');
     var jobID = scripts.getAttribute('jobid');
+    $('#download_json_btn').hide();
+    $('#download_png_btn').hide();
     update(jobID);
 });
+
+// Prepare to download the JSON from data
+function downloadJSON(data) {
+    var json = JSON.stringify(data);
+    var blob = new Blob([json], {type: "application/json"});
+    var url = URL.createObjectURL(blob);
+
+    $('#download_json_btn').attr('href', url);
+    $('#download_json_btn').attr('download', 'classification_output.json');
+}
+
+function downloadPNG(chart) {
+    
+}
 
 function makeGraph(results) {
     var ctx = document.getElementById("classificationOutput").getContext('2d');
@@ -79,6 +98,16 @@ function makeGraph(results) {
                         beginAtZero: true
                     }
                 }]
+            },
+            animation: {
+                // when the graph is loaded, prepare for download
+                onComplete: function () {
+                    // prepare for download myChart
+                    const base_64 = myChart.toBase64Image();
+                    const link = document.getElementById('download_png_btn');
+                    link.href = base_64;
+                    link.download = 'classification_output.png';
+                }
             }
         }
     });
