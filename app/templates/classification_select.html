@@ -2,6 +2,17 @@
 
 {% block content %}
 
+    <style>
+        .disabled {
+            pointer-events: none;
+            background-color: grey;
+        }
+
+        .disabled:hover {
+            cursor: not-allowed;
+        }
+    </style>
+
     <h1>Select Model and Image</h1>
     <form action="" method="post" novalidate enctype="multipart/form-data">
         {{ form.hidden_tag() }}
@@ -30,10 +41,28 @@
         <div style="visibility: hidden">
             {{ form.use_own_img }}
         </div>
-        <button type="submit" class="btn btn-dark mb-2">Submit</button>
+        <button id="submit_btn" type="submit" class="btn btn-dark mb-2">Submit</button>
     </form>
 
     <script>
+
+        function checkSubmitBtn() {
+            file_input = document.getElementById("upload_file")
+
+            if (file_input.files.length == 0) {
+                // no file
+                document.getElementById("submit_btn").classList.add("disabled")
+            } else {
+                // file
+                document.getElementById("submit_btn").classList.remove("disabled")
+            }
+        }
+
+        document.addEventListener("change", (e) => {
+            if (e.target.id === 'upload_file')
+                checkSubmitBtn();
+        })
+
         // toggle the visibility of the upload file button
         function toggleUploadBtn() {
             var upload_div = document.getElementById("upload-file");
@@ -45,10 +74,15 @@
 
                 // set the use_default field to true
                 document.getElementById("use_own_img_cbx").checked = true;
+
+                // check if submit btn must be enabled
+                checkSubmitBtn();
             } else {
                 upload_div.style.display = "none";
                 image_div.style.display = "block";
                 document.getElementById("use_own_img_cbx").checked = false;
+
+                document.getElementById("submit_btn").classList.remove("disabled")
             }
         }
     </script>

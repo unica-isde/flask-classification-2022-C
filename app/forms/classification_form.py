@@ -14,6 +14,6 @@ conf = Configuration()
 class ClassificationForm(FlaskForm):
     model = SelectField('model', choices=conf.models, validators=[DataRequired()])
     image = SelectField('image', choices=list_images(), validators=[DataRequired()])
-    upload_file = FileField()
+    upload_file = FileField(id='upload_file')
     use_own_img = BooleanField(id='use_own_img_cbx')
     submit = SubmitField('Submit')

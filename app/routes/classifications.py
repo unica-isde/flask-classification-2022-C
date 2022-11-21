@@ -25,10 +25,17 @@ def classifications():
         uploaded_file = form.upload_file.data
         use_own_img = form.use_own_img.data
 
-        if uploaded_file and use_own_img:
-            image_to_process = secure_filename(uploaded_file.filename)
-            uploaded_file.save(os.path.join(config.image_folder_path, image_to_process))
+        if use_own_img:
+            # user want to use his own image
+            if uploaded_file:
+                # user uploaded a file
+                image_to_process = secure_filename(uploaded_file.filename)
+                uploaded_file.save(os.path.join(config.image_folder_path, image_to_process))
+            else:
+                # user did not upload a file
+                image_to_process = None
         else:
+            # user wants to use one of the default images
             image_to_process = image_id
 
         redis_url = Configuration.REDIS_URL
