@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        .large-front-thumbnail {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+    </style>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <img class="large-front-thumbnail" src="{{ old_image }} " alt="Old image"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card ">
+                <img class="large-front-thumbnail" src="{{ new_image }} " alt="New image"/>
+                <a class="btn btn-primary" href="/classifications" role="button">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
