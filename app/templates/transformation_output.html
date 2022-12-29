@@ -14,15 +14,17 @@
     </style>
     <div class="row">
         <div class="col">
-            <div class="card">
-                <img class="large-front-thumbnail" src="{{ old_image }} " alt="Old image"/>
-            </div>
+            <h4>Base image</h4>
+            <img class="large-front-thumbnail" src="{{ url_for('static', filename='imagenet_subset/'+old_image) }} " alt="Old image"/>
         </div>
         <div class="col">
-            <div class="card ">
-                <img class="large-front-thumbnail" src="{{ new_image }} " alt="New image"/>
-                <a class="btn btn-primary" href="/classifications" role="button">Back</a>
-            </div>
+            <h4>Transformed image</h4>
+            <img class="large-front-thumbnail" src="{{ url_for('static', filename='imagenet_subset/'+new_image) }} " alt="New image"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a type="button" class="btn btn-primary btn-lg btn-block mt-4" href="/transformation">Back</a>
         </div>
     </div>
 {% endblock %}

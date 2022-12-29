@@ -12,10 +12,10 @@ class TransformationForm(FlaskForm):
     image = SelectField('image', choices=list_images(), validators=[DataRequired()])
     upload_file = FileField(id='upload_file')
     use_own_img = BooleanField(id='use_own_img_cbx')
-    color = FloatField(label="Select color enhancer (Min 0, Default and Max: 1)", default=1)
-    contrast = FloatField(label="Select contrast enhancer (Min 0, Default and Max: 1)", default=1)
-    brightness = FloatField(label="Select brightness enhancer (Min 0, Default and Max: 1)", default=1)
-    sharpness = FloatField(label="Select sharpness enhancer (Min 0, Default 1, Max: 2)", default=1)
+    color = FloatField(label="Select color enhancer", default=1)
+    contrast = FloatField(label="Select contrast enhancer", default=1)
+    brightness = FloatField(label="Select brightness enhancer", default=1)
+    sharpness = FloatField(label="Select sharpness enhancer", default=1)
 
     # Transformation form
     submit = SubmitField('Submit')
