@@ -13,6 +13,16 @@ config = Configuration()
 
 @app.route('/transformation', methods=['GET', 'POST'])
 def transformation():
+    """
+        Return a list of random ingredients as strings.
+
+        :param kind: Optional "kind" of ingredients.
+        :type kind: list[str] or None
+        :raise lumache.InvalidKindError: If the kind is invalid.
+        :return: The ingredients list.
+        :rtype: list[str]
+
+        """
     form = TransformationForm()
     if form.validate_on_submit():  # POST
         image_id = form.image.data

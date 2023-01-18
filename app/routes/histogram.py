@@ -11,18 +11,6 @@ import cv2
 
 @app.route('/histogram', methods=['GET', 'POST'])
 def histogram():
-    """[Summary]
-
-    This function calculate the histogram
-
-    :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]
-    :type [ParamName]: [ParamType](, optional)
-    ...
-    :raises [ErrorType]: [ErrorDescription]
-    ...
-    :return: [ReturnDescription]
-    :rtype: [ReturnType]
-    """
     form = HistogramForm()
     if form.validate_on_submit():
         image_id = form.image.data
