@@ -42,7 +42,7 @@ def histogram():
         plt.xlabel("Value")
         plt.ylabel("Pixel count")
         path_histograms = os.path.join(config.histogram_folder_path, image_id)
-        plt.savefig(path_histograms + 'h_' + image_id)
+        plt.savefig(path_histograms)
         plt.close()
         return render_template('histogram_output.html', image_id=image_id)
     return render_template('histogram_select.html',
