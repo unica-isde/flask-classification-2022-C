@@ -1,8 +1,6 @@
 from flask import render_template
-
 from app import app, config
 from app.forms.histogram_form import HistogramForm
-
 import matplotlib.pyplot as plt
 import numpy as np
 import os

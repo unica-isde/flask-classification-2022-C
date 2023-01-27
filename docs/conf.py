@@ -10,19 +10,20 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../src/'))
-project = 'ISDe_Project'
-copyright = '2022, Manuel Boi, Nicola Deidda, Marco Ledda, Luca Minnei'
-author = 'Manuel Boi, Nicola Deidda, Marco Ledda, Luca Minnei'
-release = '1.0'
+sys.path.insert(0, os.path.abspath('../'))
+
+project = 'ISDe Project'
+copyright = '2023, Manuel Boi, Marco Ledda, Nicola Deidda, Luca Minnei'
+author = 'Manuel Boi, Marco Ledda, Nicola Deidda, Luca Minnei'
+release = '0.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+
 extensions = ['sphinx.ext.autodoc']
+
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

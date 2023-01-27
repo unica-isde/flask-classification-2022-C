@@ -1,6 +1,5 @@
 import redis
 from rq import Connection, Queue
-
 from app import app
 from config import Configuration
 

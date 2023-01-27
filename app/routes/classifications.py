@@ -3,7 +3,6 @@ import redis
 from flask import render_template
 from rq import Connection, Queue
 from rq.job import Job
-
 from app import app
 from app.forms.classification_form import ClassificationForm
 from ml.classification_utils import classify_image
