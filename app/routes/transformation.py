@@ -1,5 +1,4 @@
 import os
-
 from PIL import Image
 from flask import render_template
 from app import app
@@ -14,13 +13,10 @@ config = Configuration()
 @app.route('/transformation', methods=['GET', 'POST'])
 def transformation():
     """
-        Return a list of random ingredients as strings.
+        App route which manage operations on image transformation.
 
-        :param kind: Optional "kind" of ingredients.
-        :type kind: list[str] or None
-        :raise lumache.InvalidKindError: If the kind is invalid.
-        :return: The ingredients list.
-        :rtype: list[str]
+        :return: The template with base and transformed images.
+        :rtype: str
 
         """
     form = TransformationForm()
