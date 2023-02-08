@@ -5,19 +5,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import cv2
-
+import time
 
 @app.route('/histogram', methods=['GET', 'POST'])
 def histogram():
     form = HistogramForm()
     if form.validate_on_submit():
         image_id = form.image.data
+        image_histogram_id = 'H_' + str(time.time()) + '_' + image_id
 
         path = os.path.join(config.image_folder_path, image_id)
-        path_histograms = os.path.join(config.histogram_folder_path, image_id)
+        path_histograms = os.path.join(config.image_folder_path, image_histogram_id)
+        """ path_histograms = os.path.join(config.histogram_folder_path, image_id)
 
         if not os.path.exists(config.histogram_folder_path):
-            os.mkdir(config.histogram_folder_path)
+            os.mkdir(config.histogram_folder_path) """
 
         image = cv2.imread(path)
         vals = image.mean(axis=2).flatten()
@@ -35,6 +37,6 @@ def histogram():
 
         plt.savefig(path_histograms)
         plt.close()
-        return render_template('histogram_output.html', image_id=image_id)
+        return render_template('histogram_output.html', image_id=image_id, histogram_id=image_histogram_id)
     return render_template('histogram_select.html',
                            form=form)

@@ -8,11 +8,9 @@ from app.forms.classification_form import ClassificationForm
 from ml.classification_utils import classify_image
 from config import Configuration
 from werkzeug.utils import secure_filename
-
-from ..utils.list_images import remove_uploaded_images
+import time
 
 config = Configuration()
-
 
 @app.route('/classifications', methods=['GET', 'POST'])
 def classifications():
@@ -20,8 +18,6 @@ def classifications():
     classification job. Returns the output scores from the 
     model."""
 
-    # remove all uploaded images
-    remove_uploaded_images()
     form = ClassificationForm()
     if form.validate_on_submit():  # POST
         image_id = form.image.data
@@ -33,7 +29,7 @@ def classifications():
             # user want to use his own image
             if uploaded_file:
                 # user uploaded a file
-                image_to_process = 'UPL_' + secure_filename(uploaded_file.filename)
+                image_to_process = 'UPL_' + str(time.time()) + '_' + secure_filename(uploaded_file.filename)
                 uploaded_file.save(os.path.join(config.image_folder_path, image_to_process))
             else:
                 # user did not upload a file
