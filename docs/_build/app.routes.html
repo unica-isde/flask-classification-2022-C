@@ -92,7 +92,10 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="app.routes.classifications.classifications">
 <span class="sig-prename descclassname"><span class="pre">app.routes.classifications.</span></span><span class="sig-name descname"><span class="pre">classifications</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.classifications.classifications" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>API for selecting a model and an image and running a 
+classification job. Returns the output scores from the 
+model.</p>
+</dd></dl>
 
 </section>
 <section id="module-app.routes.classifications_id">
@@ -110,7 +113,22 @@ by the id specified in the path.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="app.routes.histogram.histogram">
 <span class="sig-prename descclassname"><span class="pre">app.routes.histogram.</span></span><span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.histogram.histogram" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return an image of an histogram based on the analysis of the input image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The ingredients list.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-app.routes.home">
