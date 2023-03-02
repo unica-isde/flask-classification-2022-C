@@ -26,6 +26,9 @@
                      src="{{ url_for('static', filename='imagenet_subset/'+histogram_id) }} "
                      alt={{ histogram_id }}/>
             </div>
+            <div class="col">
+                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" href="/histogram" onclick="remove_image()">Back</a>
+            </div>
         </div>
     </div>
 {% endblock %}
