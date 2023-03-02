@@ -8,5 +8,8 @@ conf = Configuration()
 
 
 class HistogramForm(FlaskForm):
+    """
+        Flask form which manage the insert of the image for generating the histogram form
+    """
     image = SelectField('image', choices=list_images(), validators=[DataRequired()])
     submit = SubmitField('Submit')
