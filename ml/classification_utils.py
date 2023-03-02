@@ -6,7 +6,6 @@ import importlib
 import json
 import logging
 import os
-import time
 import torch
 from PIL import Image
 from torchvision import transforms
@@ -40,7 +39,7 @@ def get_model(model_id):
     if model_id in conf.models:
         try:
             module = importlib.import_module('torchvision.models')
-            return module.__getattribute__(model_id)(pretrained=True)
+            return module.__getattribute__(model_id)(weights="DEFAULT")
         except ImportError:
             logging.error("Model {} not found".format(model_id))
     else:
@@ -82,5 +81,4 @@ def classify_image(model_id, img_id):
     output = [(labels[idx], percentage[idx].item()) for idx in indices[0][:5]]
 
     img.close()
-    time.sleep(5)
     return output

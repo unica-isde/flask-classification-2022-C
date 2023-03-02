@@ -7,6 +7,52 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <script>
+        const remove_image = function () {
+            if (document.getElementById("image_to_classify") !== null) {
+                image = document.getElementById("image_to_classify").getAttribute("alt");
+                var xhr = new XMLHttpRequest();
+                // if image starts with UPL_
+                if (image.startsWith("UPL_")) {
+                    xhr.open("POST", "/remove_image", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({"image_id": image}));
+                    xhr.onload = function () {
+                        response = JSON.parse(xhr.responseText);
+                    }
+                }
+            }
+            if (document.getElementById("image_transformed") !== null) {
+                image = document.getElementById("image_transformed").getAttribute("alt");
+                var xhr = new XMLHttpRequest();
+                // if image starts with UPL_
+                if (image.startsWith("IE_")) {
+                    xhr.open("POST", "/remove_image", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({"image_id": image}));
+                    xhr.onload = function () {
+                        response = JSON.parse(xhr.responseText);
+                    }
+                }
+            }
+            if (document.getElementById("image_histogram") !== null) {
+                image = document.getElementById("image_histogram").getAttribute("alt");
+                var xhr = new XMLHttpRequest();
+                // if image starts with UPL_
+                if (image.startsWith("H_")) {
+                    xhr.open("POST", "/remove_image", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({"image_id": image}));
+                    xhr.onload = function () {
+                        response = JSON.parse(xhr.responseText);
+                    }
+                }
+            }
+        };
+    </script>
 </head>
 <body>
 
@@ -20,7 +66,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" onclick="remove_image()">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
@@ -28,7 +74,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/classifications">Try it out!</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/transformation">Transformation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/histogram">Histogram</a>
+                </li>
             </ul>
         </div>
     </div>

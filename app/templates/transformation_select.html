@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        .disabled {
+            pointer-events: none;
+            background-color: grey;
+        }
+
+        .disabled:hover {
+            cursor: not-allowed;
+        }
+    </style>
+
+    <h1>Select Image and Transformation</h1>
+    <form action="" method="post" novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div id="image">
+            <h4>Image:</h4>
+            <p>
+                {{ form.image }}
+                <a href="#" onclick="toggleUploadBtn()">Want to upload your own images?</a>
+            </p>
+        </div>
+
+        <div id="upload-file" style="display: none">
+            <h4>Upload you own image:</h4>
+            <p>
+                {{ form.upload_file }}
+                <a href="#" onclick="toggleUploadBtn()">Want to use a pre-loaded image?</a>
+            </p>
+        </div>
+
+        <div style="visibility: hidden">
+            {{ form.use_own_img }}
+        </div>
+
+        <div id="enhance">
+            <h4>Transformation:</h4>
+            <h6>Default: 1</h6>
+            <br>
+            {{ form.color.label }}
+            <br>
+            {{ form.color }}
+            <br>
+            <br>
+            {{ form.contrast.label }}
+            <br>
+            {{ form.contrast }}
+            <br>
+            <br>
+            {{ form.brightness.label }}
+            <br>
+            {{ form.brightness }}
+            <br>
+            <br>
+            {{ form.sharpness.label }}
+            <br>
+            {{ form.sharpness }}
+        </div>
+        <button id="submit_btn" type="submit" class="btn btn-dark mb-2 mt-5">Transform!</button>
+    </form>
+
+    <script>
+
+        function checkSubmitBtn() {
+            file_input = document.getElementById("upload_file")
+
+            if (file_input.files.length == 0) {
+                // no file
+                document.getElementById("submit_btn").classList.add("disabled")
+            } else {
+                // file
+                document.getElementById("submit_btn").classList.remove("disabled")
+            }
+        }
+
+        document.addEventListener("change", (e) => {
+            if (e.target.id === 'upload_file')
+                checkSubmitBtn();
+        })
+
+        // toggle the visibility of the upload file button
+        function toggleUploadBtn() {
+            var upload_div = document.getElementById("upload-file");
+            var image_div = document.getElementById("image");
+            if (upload_div.style.display === "none") {
+                // show upload button
+                upload_div.style.display = "block";
+                image_div.style.display = "none";
+
+                // set the use_default field to true
+                document.getElementById("use_own_img_cbx").checked = true;
+
+                // check if submit btn must be enabled
+                checkSubmitBtn();
+            } else {
+                upload_div.style.display = "none";
+                image_div.style.display = "block";
+                document.getElementById("use_own_img_cbx").checked = false;
+
+                document.getElementById("submit_btn").classList.remove("disabled")
+            }
+        }
+    </script>
+{% endblock %}

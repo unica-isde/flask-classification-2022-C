@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        .disabled {
+            pointer-events: none;
+            background-color: grey;
+        }
+
+        .disabled:hover {
+            cursor: not-allowed;
+        }
+    </style>
+
+
+    <form action="" method="post" novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div id="image" style="margin-top: 150px;">
+            <h3>
+                Image:
+            </h3>
+            <p>
+                {{ form.image }}
+            </p>
+        </div>
+        <button id="submit_btn" type="submit" class="btn btn-dark mb-2">Submit</button>
+    </form>
+{% endblock %}

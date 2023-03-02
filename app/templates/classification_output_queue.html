@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <script>
+
+        /* Execute remove_image before page exit */
+        window.onbeforeunload = function () {
+            remove_image();
+        };
+
+        window.onunload = function () {
+            remove_image();
+        };
+
+        window.onpopstate = function () {
+            remove_image();
+        };
+
+    </script>
+
     <style>
         .large-front-thumbnail {
             position: relative;
@@ -10,12 +27,26 @@
             margin: 0 auto;
         }
 
+        .hided-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+
+        .btns {
+            padding: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
 
     </style>
     <div class="row">
         <div class="col">
             <div class="card">
-                <img class="large-front-thumbnail"
+                <img id="image_to_classify" class="large-front-thumbnail"
                      src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
                      alt={{ image_id }}/>
             </div>
@@ -26,13 +57,19 @@
                     <canvas id="classificationOutput" style="max-width: 500px;"></canvas>
                     <div class="align-items-center">
                         <h2 id="waitText"></h2>
-                        <div class="m-5 spinner spinner-border mr-auto spinner-grow text-dark row" id="spinner">
-                        </div>
+                        <div class="m-5 spinner spinner-border mr-auto spinner-grow text-dark row" id="spinner"></div>
                     </div>
                 </div>
 
-
-                <a class="btn btn-dark" href="/classifications" role="button">Back</a>
+                <div class="btns">
+                    <a id="download_json_btn" class="btn btn-dark hided-btn" href="#" role="button">
+                        <i class="material-symbols-outlined">file_download</i><span>Download as JSON</span>
+                    </a>
+                    <a id="download_png_btn" class="btn btn-dark hided-btn" href="#" role="button">
+                        <i class="material-symbols-outlined">image</i><span>Download as PNG</span>
+                    </a>
+                </div>
+                <a class="btn btn-dark" href="/classifications" role="button" onclick="remove_image()">Back</a>
             </div>
         </div>
     </div>
