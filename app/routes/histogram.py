@@ -16,10 +16,6 @@ def histogram():
 
         path = os.path.join(config.image_folder_path, image_id)
         path_histograms = os.path.join(config.image_folder_path, image_histogram_id)
-        """ path_histograms = os.path.join(config.histogram_folder_path, image_id)
-
-        if not os.path.exists(config.histogram_folder_path):
-            os.mkdir(config.histogram_folder_path) """
 
         image = cv2.imread(path)
         vals = image.mean(axis=2).flatten()
