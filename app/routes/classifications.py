@@ -12,6 +12,7 @@ import time
 
 config = Configuration()
 
+
 @app.route('/classifications', methods=['GET', 'POST'])
 def classifications():
     """API for selecting a model and an image and running a 

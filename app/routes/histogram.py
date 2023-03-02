@@ -7,18 +7,16 @@ import os
 import cv2
 import time
 
+
 @app.route('/histogram', methods=['GET', 'POST'])
 def histogram():
     """
-        Returns the histogram plot of a given image.
+        App route which manage operations on image histogram.
 
-        :param kind: Optional "kind" of ingredients.
-        :type kind: list[str] or None
-        :raise lumache.InvalidKindError: If the kind is invalid.
-        :return: The ingredients list.
-        :rtype: list[str]
+        :return: The template with the histogram.
+        :rtype: str
 
-    """
+        """
     form = HistogramForm()
     if form.validate_on_submit():
         image_id = form.image.data

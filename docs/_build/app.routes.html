@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>app.routes package &mdash; ISDeProject 0.1 documentation</title>
+  <title>app.routes package &mdash; ISDe Project 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> ISDeProject
+            <a href="index.html" class="icon icon-home"> ISDe Project
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -41,17 +41,24 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">app</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="app.html">app package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="app.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="app.forms.html">app.forms package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">app.routes package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="app.utils.html">app.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="app.html">app package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="app.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="app.forms.html">app.forms package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">app.routes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.classifications">app.routes.classifications module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.classifications_id">app.routes.classifications_id module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.histogram">app.routes.histogram module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.home">app.routes.home module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.info">app.routes.info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes.transformation">app.routes.transformation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.routes">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="app.html#module-app">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.utils.html">app.utils package</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -62,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ISDeProject</a>
+          <a href="index.html">ISDe Project</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,7 +77,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">app</a></li>
           <li class="breadcrumb-item"><a href="app.html">app package</a></li>
       <li class="breadcrumb-item active">app.routes package</li>
       <li class="wy-breadcrumbs-aside">
@@ -113,19 +119,13 @@ by the id specified in the path.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="app.routes.histogram.histogram">
 <span class="sig-prename descclassname"><span class="pre">app.routes.histogram.</span></span><span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.histogram.histogram" title="Permalink to this definition"></a></dt>
-<dd><p>Return an image of an histogram based on the analysis of the input image.</p>
+<dd><p>App route which manage operations on image histogram.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
-</dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The ingredients list.</p>
+<dd class="field-odd"><p>The template with the histogram.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list[str]</p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -154,19 +154,13 @@ the list of available image files.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="app.routes.transformation.transformation">
 <span class="sig-prename descclassname"><span class="pre">app.routes.transformation.</span></span><span class="sig-name descname"><span class="pre">transformation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.transformation.transformation" title="Permalink to this definition"></a></dt>
-<dd><p>Return a list of random ingredients as strings.</p>
+<dd><p>App route which manage operations on image transformation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
-</dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The ingredients list.</p>
+<dd class="field-odd"><p>The template with base and transformed images.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list[str]</p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
