@@ -1,5 +1,4 @@
 import os
-
 from PIL import Image
 from flask import render_template
 from app import app
@@ -7,6 +6,7 @@ from app.forms.transformation_form import TransformationForm
 from config import Configuration
 from werkzeug.utils import secure_filename
 from PIL import ImageEnhance
+import time
 
 config = Configuration()
 
@@ -14,13 +14,10 @@ config = Configuration()
 @app.route('/transformation', methods=['GET', 'POST'])
 def transformation():
     """
-        Return a list of random ingredients as strings.
+        App route which manage operations on image transformation.
 
-        :param kind: Optional "kind" of ingredients.
-        :type kind: list[str] or None
-        :raise lumache.InvalidKindError: If the kind is invalid.
-        :return: The ingredients list.
-        :rtype: list[str]
+        :return: The template with base and transformed images.
+        :rtype: str
 
         """
     form = TransformationForm()
@@ -37,7 +34,7 @@ def transformation():
             # user want to use his own image
             if uploaded_file:
                 # user uploaded a file
-                image_to_process = secure_filename(uploaded_file.filename)
+                image_to_process = 'UPL_' + str(time.time()) + '_' + secure_filename(uploaded_file.filename)
                 uploaded_file.save(os.path.join(config.image_folder_path, image_to_process))
             else:
                 # user did not upload a file
@@ -51,8 +48,8 @@ def transformation():
         new_image = ImageEnhance.Contrast(new_image).enhance(contrast)
         new_image = ImageEnhance.Brightness(new_image).enhance(brightness)
         new_image = ImageEnhance.Sharpness(new_image).enhance(sharpness)
-        image_to_process_edited = "image_to_process_edited"
-        new_image.save(os.path.join(config.image_folder_path, image_to_process_edited), format='PNG')
+        image_to_process_edited = 'IE_' + str(time.time()) + '_' + secure_filename(uploaded_file.filename)
+        new_image.save(os.path.join(config.image_folder_path, image_to_process_edited))
 
         # returns the image classification output from the specified model
         return render_template("transformation_output.html", old_image=image_to_process, new_image=image_to_process_edited)

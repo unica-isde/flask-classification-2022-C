@@ -10,9 +10,9 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../app/'))
+sys.path.insert(0, os.path.abspath('../'))
 
-project = 'ISDeProject'
+project = 'ISDe Project'
 copyright = '2023, Manuel Boi, Marco Ledda, Nicola Deidda, Luca Minnei'
 author = 'Manuel Boi, Marco Ledda, Nicola Deidda, Luca Minnei'
 release = '0.1'
